@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isValid(String s) {
+        String stack = "";
+        for (char ch : s.toCharArray()) {
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack += ch;
+            } 
+            else {
+                if (stack.length() == 0) return false;
+
+                char last = stack.charAt(stack.length() - 1);
+                stack = stack.substring(0, stack.length() - 1);
+
+                if ((ch == ')' && last != '(') ||
+                    (ch == '}' && last != '{') ||
+                    (ch == ']' && last != '[')) {
+                    return false;
+                }
+            }
+        }
+        return stack.length() == 0;
+    }
+}
