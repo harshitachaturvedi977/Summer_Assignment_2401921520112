@@ -1,0 +1,28 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        int[] arr = new int[tokens.length];
+        int top = -1;
+        for (String s : tokens) {
+            if (s.equals("+")) {
+                arr[top - 1] = arr[top - 1] + arr[top];
+                top--;
+            } 
+            else if (s.equals("-")) {
+                arr[top - 1] = arr[top - 1] - arr[top];
+                top--;
+            }
+             else if (s.equals("*")) {
+                arr[top - 1] = arr[top - 1] * arr[top];
+                top--;
+            }
+             else if (s.equals("/")) {
+                arr[top - 1] = arr[top - 1] / arr[top];
+                top--;
+            }
+             else {
+                arr[++top] = Integer.parseInt(s);
+            }
+        }
+        return arr[top];
+    }
+}
